@@ -6,16 +6,16 @@ dotenv.config();
 export const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    rejectUnauthorized: false
+    rejectUnauthorized: false  //for Neon cloud
   }
 });
 
 export const connectDB = async () => {
   try {
-    await pool.query("Select 1");
-    console.log("Connected");
+    await pool.query("SELECT 1");
+    console.log("PostgreSQL Connected");
   } catch (error) {
-    console.error(" Connection Failed", error);
+    console.error("DB Connection Failed", error);
     process.exit(1);
   }
 };
